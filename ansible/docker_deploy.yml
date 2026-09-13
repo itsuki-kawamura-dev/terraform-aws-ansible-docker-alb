@@ -1,0 +1,26 @@
+- name: Configure application server
+  hosts: all
+  gather_facts: true
+  become: true
+
+  tasks:
+    - name: Install Docker
+      ansible.builtin.package:
+        name: docker
+        state: present
+
+    - name: Start and enable Docker
+      ansible.builtin.service:
+        name: docker
+        state: started
+        enabled: true
+        
+    - name: Run nginx container
+      community.docker.docker_container:
+        name: web
+        image: nginx:latest
+        state: started
+        restart_policy: always
+        published_ports:
+          - "80:80"
+        

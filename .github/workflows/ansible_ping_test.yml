@@ -1,0 +1,49 @@
+name: Ansible SSM Test
+
+on:
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+env:
+  AWS_REGION: ap-northeast-1
+
+jobs:
+  ansible:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v6
+        with:
+          role-to-assume: ${{ vars.IAM_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Install Ansible
+        run: |
+          python3 -m pip install --upgrade ansible boto3 botocore
+
+      - name: Install Amazon AWS collection
+        run: |
+          ansible-galaxy collection install community.aws
+    
+    ####
+      - name: Install Session Manager Plugin
+        run: |
+          curl "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/ubuntu_64bit/session-manager-plugin.deb" \
+            -o "session-manager-plugin.deb"
+
+          sudo dpkg -i session-manager-plugin.deb
+      
+      
+      - name: Run Ansible ping
+        working-directory: ansible
+        run: |
+          ansible-playbook \
+            -i inventory.yml \
+            ping.yml

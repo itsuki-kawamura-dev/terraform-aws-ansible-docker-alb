@@ -1,0 +1,7 @@
+- name: Test SSM connection
+  hosts: all
+  gather_facts: false
+
+  tasks:
+    - name: Ping managed node
+      ansible.builtin.ping:
