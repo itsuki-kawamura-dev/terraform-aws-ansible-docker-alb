@@ -48,9 +48,3 @@ resource "aws_lb_target_group_attachment" "app" {
   target_id        = aws_instance.main.id
   port             = 80
 }
-
-########### ALB OUTPUT ###########
-output "alb_dns_name" {
-  description = "ALB DNS name"
-  value       = aws_lb.main.dns_name
-}
