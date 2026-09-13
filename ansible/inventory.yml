@@ -1,9 +1,9 @@
 all:
   hosts:
     app_server:
-      ansible_host:  i-0d5c687e07cc328c5
+      ansible_host:  <YOUR_INSTANCE_ID>
 
       ansible_connection: amazon.aws.aws_ssm
       ansible_aws_ssm_region: ap-northeast-1
 
-      ansible_aws_ssm_bucket_name: ansible-transfer-bucket-kawamura-123456789
+      ansible_aws_ssm_bucket_name: <YOUR_BUCKET_NAME>
