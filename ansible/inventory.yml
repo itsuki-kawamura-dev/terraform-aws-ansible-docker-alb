@@ -1,7 +1,7 @@
 all:
   hosts:
     app_server:
-      ansible_host:  i-087cc6b329db1895c
+      ansible_host:  i-0d5c687e07cc328c5
 
       ansible_connection: amazon.aws.aws_ssm
       ansible_aws_ssm_region: ap-northeast-1
