@@ -5,4 +5,4 @@ vpc_cidr = "10.0.0.0/16"
 instance_type    = "t4g.micro"
 root_volume_size = 8
 
-ansible_transfer_bucket_name = <YOUR BUCLET NAME>
+ansible_transfer_bucket_name = <YOUR BUCKET NAME>
