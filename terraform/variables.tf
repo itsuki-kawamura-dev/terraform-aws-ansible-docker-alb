@@ -15,8 +15,8 @@ variable "instance_type" {
 }
 
 variable "root_volume_size" {
-  description = "volume size of ec2 instance"
-  type        = string
+  description = "Root volume size in GiB"
+  type        = number
 }
 
 variable "ansible_transfer_bucket_name" {
